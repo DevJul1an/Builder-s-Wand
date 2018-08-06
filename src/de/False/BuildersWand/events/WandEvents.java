@@ -1,6 +1,8 @@
 package de.False.BuildersWand.events;
 
 import com.gmail.nossr50.mcMMO;
+import com.intellectualcrafters.plot.object.Plot;
+import com.intellectualcrafters.plot.object.PlotPlayer;
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.Faction;
@@ -582,7 +584,18 @@ public class WandEvents implements Listener
                 return false;
             }
         }
-
+        
+        Plugin plotSquaredPlugin = getExternalPlugin("PlotSquared");
+        if(plotSquaredPlugin != null)
+        {
+            PlotPlayer plotPlayer = PlotPlayer.wrap(player);
+            Plot plot = plotPlayer.getCurrentPlot();
+            if(plot == null || !plot.isAdded(plotPlayer.getUUID())
+            {
+                return false;
+            }
+        }
+           
         return true;
     }
 
@@ -649,6 +662,17 @@ public class WandEvents implements Listener
                 {
                     return false;
                 }
+            }
+        }
+        
+        Plugin plotSquaredPlugin = getExternalPlugin("PlotSquared");
+        if(plotSquaredPlugin != null)
+        {
+            PlotPlayer plotPlayer = PlotPlayer.wrap(player);
+            Plot plot = plotPlayer.getCurrentPlot();
+            if(plot == null || !plot.isAdded(plotPlayer.getUUID())
+            {
+                return false;
             }
         }
 
